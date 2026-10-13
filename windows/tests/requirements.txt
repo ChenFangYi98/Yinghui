@@ -1,0 +1,4 @@
+Pillow==12.3.0
+numpy==2.5.3
+tifffile==2026.9.20
+psd-tools==1.24.0

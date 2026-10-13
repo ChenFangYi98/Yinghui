@@ -1,0 +1,103 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>使用手册.zh-CN</title><style>
+@media (prefers-color-scheme: dark) { :root { color-scheme: dark; } }
+body { margin: 0; font: 16px/1.8 -apple-system, BlinkMacSystemFont, 'Microsoft YaHei',
+       'PingFang SC', 'Noto Sans CJK SC', sans-serif; background: #f5f7fb; color: #1e293b; }
+main { max-width: 920px; margin: 3rem auto; padding: 3rem 4rem; background: white;
+       box-shadow: 0 12px 36px #17264b16; border-radius: 18px; }
+h1, h2, h3 { line-height: 1.35; color: #10203a; }
+h1 { font-size: 2.2rem; border-bottom: 3px solid #3e79e8; padding-bottom: .6rem; }
+h2 { margin-top: 2.5rem; border-left: 4px solid #3e79e8; padding-left: .8rem; }
+a { color: #205cbb; } code { background: #eef2f8; padding: .1em .3em; border-radius: 4px; }
+pre { overflow-x: auto; padding: 1rem; background: #eef2f8; border-radius: 8px; }
+pre code { padding: 0; } blockquote { border-left: 4px solid #b4c6e5; margin: 1rem 0;
+    padding: .15rem 1rem; background: #f3f6fb; }
+table { width: 100%; border-collapse: collapse; display: block; overflow-x: auto; }
+th, td { border: 1px solid #dce4ef; padding: .55rem .7rem; text-align: left; vertical-align: top; }
+th { background: #eaf1fc; } li { margin: .35rem 0; }
+.top { color: #56647a; font-size: .93rem; }
+@media (max-width: 720px) { main { margin: 0; padding: 1.25rem; border-radius: 0; } }
+@media (prefers-color-scheme: dark) {
+  body { background: #121925; color: #dce7f7; }
+  main { background: #1e293b; } h1, h2, h3 { color: #f0f5fc; }
+  a { color: #91baff; } code, pre, blockquote { background: #29384d; }
+  th { background: #30445e; } th, td { border-color: #46566a; }
+}
+</style></head><body><main><p class="top">映绘 Yinghui 0.4.5 · 离线中文文档</p><h1>映绘 Yinghui 0.4.5 使用手册</h1>
+<p>映绘是一款中文 Windows 图片编辑器。简单模式可以用一句话提出修改想法；专业模式提供图层、选区、画笔和可重新编辑的调色参数。两种模式编辑同一份项目。第一次使用，建议照着下面的“五分钟流程”完成一张照片。</p>
+<h2>1. 安装与启动</h2>
+<p>适用系统：Windows 10 22H2 或 Windows 11，64 位。把 <code>Yinghui-Windows-0.4.5-x64-Setup.exe</code> 和所有同名前缀的 <code>Setup-数字.bin</code> 放在同一文件夹，双击 <strong>Setup.exe</strong>。安装时可以选择桌面快捷方式和 <code>.comp</code> 文件关联。不要只复制安装器的 <code>.exe</code>：<code>.bin</code> 中包含图片模型、运行库和其他安装数据。</p>
+<p>如果只想下载一个文件，使用 <code>Yinghui-Windows-0.4.5-x64-Offline-Installer.zip</code>：完整解压后，再双击里面的 <strong>Setup.exe</strong>。这个 ZIP 包含全部 21 个分卷，仍可离线安装；不要直接在压缩包浏览窗口里运行安装程序。</p>
+<p>如果想要<strong>免安装直接运行</strong>，下载 <code>Yinghui-Windows-0.4.5-x64-Portable-with-Source.zip</code>。完整解压后进入 <code>Yinghui-Windows-0.4.5-x64-Portable</code> 文件夹，双击 <code>Yinghui.exe</code>；不要只把 EXE 单独复制出去，旁边的 DLL、资源和模型目录也要保留。这个 ZIP 根目录另含 <code>Yinghui-Source-0.4.5.zip</code> 源码包。首次运行仍可能需要加载本地模型。</p>
+<p>单 ZIP 约 39 GiB。如果 ZIP、解压后的安装文件和最终安装目录都留在同一磁盘，建议至少预留 125 GB；空间较紧时，确认完整解压出 Setup.exe 与 21 个分卷后，可以先删除 ZIP，再运行安装程序。</p>
+<p>完整安装约需 45 GB 磁盘空间；安装包也保存在同一磁盘时，还需为安装包本身留出空间，建议至少预留 90 GB。安装目录默认为当前 Windows 用户的应用目录，无需单独安装 Python、Ollama 或 CUDA 开发工具包。显卡加速仍需要兼容的显卡驱动。</p>
+<p>本版安装程序没有代码签名，Windows 可能显示“未知发布者”。请先核对同目录 <code>SHA256SUMS.txt</code> 中的 SHA-256。完整离线包已编译并核对分卷；同一安装脚本的轻量包通过独立安装、启动和卸载测试，但完整大包尚未在干净系统上实装验证。</p>
+<p>首次启动看图模型可能需要核对文件和加载权重，窗口可以继续操作。模型设置里可在约 17.4 GB 的 <strong>Qwen3.8 27B</strong> 与约 1.95 GB 的 <strong>Qwen3.5 2B</strong> 之间选择。内存不足 32 GB 或更在意速度时，先选 2B。自动设备模式优先尝试可用 GPU，失败时尝试 CPU；CPU 运行大模型可能很慢。如果 AI 连接失败，普通打开、修图、保存和导出仍可使用。</p>
+<h2>2. 五分钟修好一张照片</h2>
+<ol>
+<li>在首页点“打开照片 / 项目”，选择 PNG、JPEG、WebP、TIFF 等照片；没有照片可以打开离线示例。</li>
+<li>保持“简单模式”。在“轻松修图”试用“自动优化”或滤镜，用强度控制结果。效果会作为参数保留。</li>
+<li>打开“AI 助手”，输入“把照片稍微提亮，颜色自然一点”，点“开始修改”或按 <strong>Ctrl+Enter</strong>。进度显示实际执行步骤，成功修改后可以继续输入下一句。</li>
+<li>想只改照片的一块，点左侧“圈这里”或“涂这里”做蓝色标记，再输入“选中区域亮度增加5度”。蓝色只是标记，不会画进照片。需要更准确时圈得紧一些。</li>
+<li>按 <strong>Ctrl+S</strong> 保存 <code>.comp</code> 项目，日后能继续改图层和参数。要发给别人，点“导出图片”，选择 PNG、JPEG 或其他目标格式。<strong>导出图片不会替代保存项目</strong>。</li>
+</ol>
+<p>每句 AI 成功修改都会产生可恢复版本，可以撤销、重做、比较或继续修。版本面板可命名重要状态。自动版本默认每项目保留最近 100 个，并受本机 10 GiB 预算限制；命名版本不自动清理。普通项目保存包含当前可编辑状态；如需将历史一起装进 <code>.comp</code>，使用“保存时包含历史版本”。修改后的文档还有每 60 秒写入的恢复副本。</p>
+<h2>3. 用语言控制“改哪里”</h2>
+<p>AI 助手输入框上方的“修改哪里”有三种范围：</p>
+<table>
+<thead>
+<tr>
+<th>选择</th>
+<th>适合场景</th>
+<th>软件行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>仅圈选 / 涂选区域</td>
+<td>已准确画出边界</td>
+<td>严格使用当前原始标记，范围外逐像素保持原样</td>
+</tr>
+<tr>
+<td>全部区域</td>
+<td>整张图片调色或改风格</td>
+<td>本次处理整张图，已有蓝色标记仍保留，之后可切回局部</td>
+</tr>
+<tr>
+<td>大致位置 · 识别完整对象</td>
+<td>只圈出大概位置，例如车门附近却想改整辆车</td>
+<td>结合整图定位目标，再识别实际对象边缘；识别失败会停止提交</td>
+</tr>
+</tbody>
+</table>
+<p>新圈画后默认使用“仅圈选 / 涂选区域”。如果想让软件根据整图补出对象边缘，需要<strong>自己切换到“大致位置”</strong>。这个模式最多处理八块独立标记；多人、遮挡、细发丝及透明物体可能认错，先选“预览后应用”检查。明确数值如“选区亮度增加5度”仍沿用原圈选，不会被“大致位置”扩大。</p>
+<p>试着输入这些想法：</p>
+<ul>
+<li>“把照片提亮一点，颜色自然一些。”——未指定力度时进行保守微调。</li>
+<li>“选中区域亮度增加5度，其他参数不要动。”——严格按亮度参数点执行；这里的“度”不是曝光档位。</li>
+<li>“曝光增加1档。”——曝光增加 1 EV。</li>
+<li>“把这辆车改成红色，背景不变。”——适合先圈车，再在“大致位置”中识别对象。</li>
+<li>“加上‘周末旅行’四个字，放在右下角。”——添加可继续编辑的中文文字。</li>
+<li>“刚才那块再亮一点。”——在可恢复的上一次区域上继续修改；对象被移动、删除或画布变化时，软件可能要求重新标记。</li>
+</ul>
+<p>精确数值由本机工具校验，不用图片重绘来假装完成。只启用图片模型时可生图和改图；精确亮度、曝光等命令需要启用“读图文字模型”。范围、单位或数值有歧义时会提示。AI 完成画面修改后，应用前可查看预览；失败、取消或过期任务不会留下部分编辑。</p>
+<h2>4. 模型设置与开发者模式</h2>
+<p>点“模型设置”进入独立窗口。“读图文字模型”负责看图、理解中文和调用调色、文字等编辑工具；“图片生成 / 编辑模型”负责产生新像素。两个勾选项可只选一个，也可同时勾选协作。未勾选的模型不会参加当前任务。“操作日志”是另一窗口，用于查看实际步骤和错误。</p>
+<p>“助手与推理”页保存看图型号、设备、线程、上下文、等待时间、自动应用或预览方式以及是否发送画面。看图型号之间的参数分别记住。开发者可以填写自己的模型包和 CPU / CUDA / Vulkan 推理运行库目录，随时恢复软件自带环境。</p>
+<p>“图片环境 / 开发者”页分别记住图片型号的设备、输出尺寸、步数和备用引擎；可编辑工作脚本，保存前会备份，并可检查语法与恢复。Qwen-Image-2.1 图片引擎随完整安装包提供；轻量 SD 1.5 也可单独选择。大模型生成质量和耗时与硬件及所选尺寸有关。软件的图片服务与用户自己的 ComfyUI 分开运行。</p>
+<p>云端模型或自己已有的本地服务可以在模型中心另行连接。外部连接的地址、型号和选择会记住，云端密钥存入当前 Windows 用户的凭据管理器；密钥框留空不会删除旧密钥。启动时后台做短回复检测，不上传项目图片、不执行修图。选用云端服务且启用画面发送时，当前预览图会送给所选服务；可以在设置中关闭。画面预览不会附带本地路径或 EXIF。连接失败只影响对应 AI 能力。</p>
+<h2>5. 不用 AI 的日常工具</h2>
+<p>首页有照片美化、中文加字、拼图和海报入口。简单模式可以使用自动优化、12 款可调强度滤镜、常用裁剪比例、六种拼图布局和六种基础海报模板。模板里的照片、背景和文字仍是图层，双击可替换或编辑。选中文字、图片或区域时会出现相关操作。</p>
+<p>想精细修改，切换“专业模式”即可继续编辑同一份文档。常用快捷键：<strong>B</strong> 画笔、<strong>E</strong> 橡皮、<strong>T</strong> 文字、<strong>V</strong> 移动、<strong>C</strong> 裁剪、<strong>L</strong> 套索、<strong>W</strong> 魔棒、<strong>M</strong> 矩形选区、<strong>Ctrl+T</strong> 精确变换、<strong>Ctrl+Z</strong> 撤销、<strong>Ctrl+S</strong> 保存。空格拖动画布，滚轮缩放，Ctrl+0 适合窗口。专业面板可管理图层顺序、分组、锁定、蒙版、混合模式、调整层和效果。</p>
+<p>调色参数包括亮度、对比度、曝光、高光、阴影、白场、黑场、色温、色调、色相、饱和度、自然饱和度，以及色阶、曲线、锐化、降噪、暗角等。调整节点可关闭、排序和重新修改，原图像素与参数分开保存。有选区时新增调整可以形成局部蒙版。</p>
+<h2>6. 文件格式与导出</h2>
+<p>可以打开 PNG、JPEG、BMP、WebP、TIFF/TIF、GIF、SVG、PSD/PSB 和 <code>.comp</code>。GIF 只导入首帧；SVG 会先按指定尺寸栅格化；多页 TIFF 首版只导入首页，16 位 TIFF 会说明转换到 8 位。PSD/PSB 导入主要针对 <strong>8 位 RGB</strong> 图层内容，不保证全部 Photoshop 特效或智能对象都保持可编辑。</p>
+<p>项目请存为单文件 <code>.comp</code>，它保留软件的完整图层和调整状态。导出支持 TIFF、PNG、JPEG、BMP、WebP 和基础分层 PSD。透明背景分享可用 PNG；普通照片分享通常用 JPEG/WebP；打印或无损合成可选 TIFF。PSD 导出无法直接表示的文字、形状、参数和效果会按转换报告栅格化或合并。要继续在映绘中调整，请保留 <code>.comp</code>。</p>
+<p>专业工作区目前以 <strong>8 位 sRGB</strong> 为主。RAW、CMYK、16/32 位编辑、完整 Photoshop 往返、完整液化、智能对象及多画板尚未完成。真实 Photoshop 样本和 Windows 10 干净系统的全面兼容仍需扩大验证。</p>
+<h2>7. 常见问题</h2>
+<p><strong>AI 页面提示连接不上？</strong> 先看模型设置中的当前型号和路径，点击“重试连接”；大模型首次加载可能较久。设备选择“自动”，仍失败可选 CPU 或 2B，或者恢复随软件提供的环境。普通修图功能继续可用。</p>
+<p><strong>安装时找不到下一卷？</strong> 确认全部 <code>Setup-数字.bin</code> 与 <code>Setup.exe</code> 在同一文件夹，并核对交付目录中的 SHA-256 清单。</p>
+<p><strong>圈住了却改错对象？</strong> 切到精确圈选，或缩小蓝色标记并写清对象名称，如“左边人的红色衣服”。大致位置模式只把圈画当位置提示，不是可靠的语义边界。</p>
+<p><strong>为什么再次打开导出图不能改原参数？</strong> 导出图一般是合成像素。打开上次保存的 <code>.comp</code> 项目继续编辑。</p>
+<p><strong>修改能用于商业项目吗？</strong> 应用源码采用 MIT 许可；完整安装包里的第三方模型、ComfyUI 与运行库有各自许可。尤其 Qwen-Image-2.1 权重限研究与评估，商业使用应先取得相应授权；不要把安装包整体当作“MIT 模型包”。详见交付目录的《开源与第三方许可说明》。</p>
+<p>更多设置及逐项参数见软件目录的 <code>QUICKSTART.zh-CN.md</code>、<code>LOCAL-AI.zh-CN.md</code> 和 <code>README.md</code>。</p>
+</main></body></html>

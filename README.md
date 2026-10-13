@@ -88,3 +88,9 @@ AI 助手输入框上方的“修改哪里”有三种范围：
 **修改能用于商业项目吗？** 应用源码采用 MIT 许可；完整安装包里的第三方模型、ComfyUI 与运行库有各自许可。尤其 Qwen-Image-2.1 权重限研究与评估，商业使用应先取得相应授权；不要把安装包整体当作“MIT 模型包”。详见交付目录的《开源与第三方许可说明》。
 
 更多设置及逐项参数见软件目录的 `QUICKSTART.zh-CN.md`、`LOCAL-AI.zh-CN.md` 和 `README.md`。
+
+## 代码和轻量版文件
+
+Windows C++/Qt 源码、构建脚本和测试位于 [`windows/`](windows/)；macOS 原工程位于 [`Compositor/`](Compositor/)，原说明见 [`README.macOS.md`](README.macOS.md)。构建方法见 [`windows/README.md`](windows/README.md) 和 [`windows/publication/源码包说明.zh-CN.md`](windows/publication/源码包说明.zh-CN.md)。
+
+[`lite/`](lite/) 保存了本地轻量运行包的全部 109 个应用文件（不含该目录原有的 Git 元数据）。它不带离线模型权重；完整模型在离线安装包中。应用源码的 MIT 许可与第三方模型许可分别适用。

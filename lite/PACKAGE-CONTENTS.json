@@ -1,0 +1,9 @@
+{
+  "version": "0.4.5",
+  "edition": "full",
+  "qwen21_offline_pack": true,
+  "embedded_assistant": true,
+  "embedded_sd15": true,
+  "base_runtime_version": "0.4.3",
+  "qwen38_27b_offline_pack": true
+}

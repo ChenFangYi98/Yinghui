@@ -1,0 +1,103 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>功能说明.zh-CN</title><style>
+@media (prefers-color-scheme: dark) { :root { color-scheme: dark; } }
+body { margin: 0; font: 16px/1.8 -apple-system, BlinkMacSystemFont, 'Microsoft YaHei',
+       'PingFang SC', 'Noto Sans CJK SC', sans-serif; background: #f5f7fb; color: #1e293b; }
+main { max-width: 920px; margin: 3rem auto; padding: 3rem 4rem; background: white;
+       box-shadow: 0 12px 36px #17264b16; border-radius: 18px; }
+h1, h2, h3 { line-height: 1.35; color: #10203a; }
+h1 { font-size: 2.2rem; border-bottom: 3px solid #3e79e8; padding-bottom: .6rem; }
+h2 { margin-top: 2.5rem; border-left: 4px solid #3e79e8; padding-left: .8rem; }
+a { color: #205cbb; } code { background: #eef2f8; padding: .1em .3em; border-radius: 4px; }
+pre { overflow-x: auto; padding: 1rem; background: #eef2f8; border-radius: 8px; }
+pre code { padding: 0; } blockquote { border-left: 4px solid #b4c6e5; margin: 1rem 0;
+    padding: .15rem 1rem; background: #f3f6fb; }
+table { width: 100%; border-collapse: collapse; display: block; overflow-x: auto; }
+th, td { border: 1px solid #dce4ef; padding: .55rem .7rem; text-align: left; vertical-align: top; }
+th { background: #eaf1fc; } li { margin: .35rem 0; }
+.top { color: #56647a; font-size: .93rem; }
+@media (max-width: 720px) { main { margin: 0; padding: 1.25rem; border-radius: 0; } }
+@media (prefers-color-scheme: dark) {
+  body { background: #121925; color: #dce7f7; }
+  main { background: #1e293b; } h1, h2, h3 { color: #f0f5fc; }
+  a { color: #91baff; } code, pre, blockquote { background: #29384d; }
+  th { background: #30445e; } th, td { border-color: #46566a; }
+}
+</style></head><body><main><p class="top">映绘 Yinghui 0.4.5 · 离线中文文档</p><h1>映绘 Yinghui 0.4.5 功能说明</h1>
+<h2>产品定位</h2>
+<p>映绘面向两种工作方式：新手在简单模式里用中文描述目标，软件选择已登记的工具执行；熟悉图层的用户在专业模式里继续使用传统图片编辑界面。两种模式共享同一文档。Windows 版本使用 C++20、Qt 6.12 Widgets、Direct3D 11 和 MSVC 2022；仓库保留原有 macOS Swift 工程。Windows 项目采用 <code>.comp</code> ZIP64 单文件格式，当前清单版本 v15。</p>
+<p>它是持续完善的图片编辑器，不是完整 Photoshop 兼容实现。AI 可以帮助完成步骤，结果仍需要人在复杂画面中检查。</p>
+<h2>已提供的能力</h2>
+<table>
+<thead>
+<tr>
+<th>领域</th>
+<th>0.4.5 中可用的功能</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>简单修图</td>
+<td>首页引导、自动优化、12 款可编辑滤镜、强度、常用裁剪、中文加字、六种拼图和六种海报</td>
+<td>图片、文字、背景可继续编辑；不要求先理解图层</td>
+</tr>
+<tr>
+<td>AI 助手</td>
+<td>中文想法、看图、内部命令调用、图片生成/编辑、预览或自动应用、任务取消、操作日志</td>
+<td>看图文字模型与图片模型可各自单独用，也可协作；执行成功才提交</td>
+</tr>
+<tr>
+<td>局部 AI</td>
+<td>精确圈选、全部区域、大致位置识别对象；最多八块位置标记</td>
+<td>大致位置会结合整图识别并检查蒙版；精确圈选不扩大，范围外像素由本机保护</td>
+</tr>
+<tr>
+<td>本地模型</td>
+<td>Qwen3.8 27B、Qwen3.5 2B 看图助手，Qwen-Image-2.1 INT8 与轻量 SD 1.5 图片引擎</td>
+<td>完整安装包离线提供；自动选择可用 GPU/CPU，按型号分别保存配置；硬件不足仍可能无法加载</td>
+</tr>
+<tr>
+<td>图层与工具</td>
+<td>图层/分组、蒙版、锁定、混合模式、调整层，画笔、橡皮、仿制、修复、模糊、文字、形状、渐变、选区、变换、裁剪</td>
+<td>专业模式直接操作；登记的部分命令也供 AI 使用</td>
+</tr>
+<tr>
+<td>调色</td>
+<td>亮度、对比度、曝光、色彩、色阶、曲线、局部蒙版、纹理、清晰度、锐化、降噪、暗角、颗粒等</td>
+<td>原像素与参数分离；参数栈可重新编辑、排序、关闭和重置</td>
+</tr>
+<tr>
+<td>历史</td>
+<td>撤销/重做、版本比较、命名及分支恢复、恢复副本</td>
+<td>AI 每次成功任务作为一个撤销步骤；普通保存可选打包历史</td>
+</tr>
+<tr>
+<td>文件</td>
+<td>PNG、JPEG、BMP、WebP、TIFF、GIF 首帧、SVG 栅格化、8 位 RGB PSD/PSB 导入；TIFF/PNG/JPEG/BMP/WebP/基础 PSD 导出</td>
+<td>完整可编辑项目保存为 <code>.comp</code>；不同格式的能力和转换提示详见手册</td>
+</tr>
+<tr>
+<td>连接与开发</td>
+<td>多个云端或本地模型连接、Windows 凭据保存、连接检测、独立模型设置、开发者脚本和运行库路径</td>
+<td>修改配置后可重新检测；操作日志独立显示；普通编辑不依赖 AI 在线</td>
+</tr>
+</tbody>
+</table>
+<h3>一句话真正执行编辑</h3>
+<p>助手接收当前文档、图层、参数、选区和必要的预览，生成操作步骤，再由本机 <code>CommandRegistry</code> 校验数值、作用范围和锁定状态。命令在文档副本上执行；版本持久保存、提交检查成功后才写回。精确指令“选区亮度增加5度”按参数点计算，不能由生图近似替代。生成改图时，软件把完整画面与本机蒙版交给图片引擎，再按蒙版合成，保护外部像素。</p>
+<p>大致圈选模式把蓝色圈画视为位置提示。看图模型同时获得干净整图、标注图和局部图，先给出目标框；MobileSAM 识别边缘，模型再检查实际标记并继续调色或调用图片引擎。定位失败、区域过大或遗漏独立标记时停止提交。实测白色汽车改红案例中，局部区域外像素变化为 0；这只证明该样例及硬性保护有效，不代表所有对象都能被正确识别。</p>
+<h3>运行与性能设计</h3>
+<p>随包提供 CPU、CUDA、Vulkan 推理运行库。看图服务使用本地随机端口与临时认证、本地代理绕过、后台健康检查和失效后的重新加载。用户可以给每个看图型号单独设置设备、上下文和线程数，给不同图片型号分别设置设备、尺寸、步数和备用引擎。大图片模型推理前释放软件自己的看图模型显存，之后按需恢复；两个 AI 任务顺序使用资源，排队可取消。软件不修改系统 PATH、Python 或显卡驱动。</p>
+<p>11 个 UI 截图场景涵盖 100%、125%、150% 缩放；原生测试五组共 137 个实际用例。Qwen3.8、轻量 2B、图片单模型、双模型协作、离线便携目录和带干扰环境变量的推理测试已在 Windows 11 / RTX A6000 机器通过。具体证据及未测范围见源码中的 <code>windows/VALIDATION-0.4.5.md</code>。</p>
+<h2>当前明确边界</h2>
+<ul>
+<li>工作空间以 <strong>8 位 sRGB</strong> 为主。16 位 TIFF 导入时转换；RAW、CMYK、16/32 位编辑、HDR 全流程未交付。</li>
+<li>TIFF 多页只导入首页，GIF 只导入首帧，SVG 转成像素。PSD/PSB 接受 8 位 RGB 图层文件；文字、智能对象、复杂效果和某些调整可能被烘焙或以合成画面导入。PSD 导出是基础分层转换，不承诺完整往返。</li>
+<li>完整液化、智能对象、路径文字、多画板及完整专业人像修饰尚未实现。有限的瘦臂局部变形要求清晰的人物目标，遮挡或多人场景可能拒绝执行。</li>
+<li>复杂人体、重叠物体、透明细节以及生成图片的风格质量需要人工预览。自动对象定位不能替代精确选区检查。</li>
+<li>真实云端服务、Windows 10 干净系统、27B 与 Qwen-Image-2.1 的完整 CPU 推理，以及 Qwen-Image-Edit-2511 原始权重路径尚未完成这一版的真实验收。性能数字只对应测试机器，不作为最低性能承诺。</li>
+</ul>
+<h2>发布组成与许可</h2>
+<p>本交付目录同时提供完整 0.4.5 分卷安装包、独立源码 ZIP、使用手册、本说明及公众号文章。源码包保留仓库的 MIT <code>LICENSE</code> 与原版权声明；不包含用户图片、API 密钥、虚拟环境、安装模型权重、编译输出或个人日志。</p>
+<p><strong>源码开源与随包模型是两件事。</strong> 安装包里的 Qt、ComfyUI、AI 模型和运行库遵循各自的许可；其中 Qwen-Image-2.1 权重按 Qwen Research License 只授权研究和评估，商业使用需要另外取得相应授权。安装包提供许可证和署名。发布前如更换权重或运行库，请重新核对对应来源和许可。完整解释见《开源与第三方许可说明》。</p>
+</main></body></html>
